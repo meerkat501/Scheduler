@@ -1,11 +1,11 @@
-var currentHour = dayjs().hour();
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 $(function () {
+    var currentHour = dayjs().hour();
     $('#currentDay').text(dayjs().format('MMM d, YYYY'));
 
-    $('saveBtn').on('click', function(){
+    $('.saveBtn').on('click', function(){
         var timeBlock = $(this).closest('.time-block');
         var hourId = timeBlock.attr('id');
         var userInput = timeBlock.find('textarea').val();
@@ -25,7 +25,12 @@ $(function () {
     });
 
 
-
+    $('.time-block').each(function(){
+        let storedValue = localStorage.getItem($(this).attr('id'));
+        if (storedValue){
+            $(this).find('textarea').val(storedValue);
+        }
+    });        
 
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
