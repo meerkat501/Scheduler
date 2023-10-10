@@ -26,7 +26,7 @@ $(function () {
 
 
     $('.time-block').each(function(){
-        let storedValue = localStorage.getItem($(this).attr('id'));
+        var storedValue = localStorage.getItem($(this).attr('id'));
         if (storedValue){
             $(this).find('textarea').val(storedValue);
         }
@@ -37,11 +37,11 @@ $(function () {
 function createTimeBlocks(startHour, endHour) {
     const timeBlockContainer = document.querySelector('.container-lg.px-5'); // Select the container where time blocks will be added
 
-    for (let i = startHour; i <= endHour; i++) {
-        let displayHour = i <= 12 ? i : i - 12; // Convert 24-hour format to 12-hour format
-        let meridiem = i < 12 ? 'AM' : 'PM'; // Determine AM or PM
+    for (var i = startHour; i <= endHour; i++) {
+        var displayHour = i <= 12 ? i : i - 12; // Convert 24-hour format to 12-hour format
+        var meridiem = i < 12 ? 'AM' : 'PM'; // Determine AM or PM
         
-        let timeBlock = `
+        var timeBlock = `
         <div id="hour-${i}" class="row time-block">
             <div class="col-2 col-md-1 hour text-center py-3">${displayHour}${meridiem}</div>
             <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
